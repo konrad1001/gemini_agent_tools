@@ -10,9 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  source_gen: ^4.1.1
-  analyzer: ^9.0.0
-  build: ^4.0.3
+  analyzer: ">=8.0.0 <9.0.0"
+  source_gen: ^4.1.0
+  build: ^4.0.0
 
 dev_dependencies:
   flutter_lints: ^5.0.0

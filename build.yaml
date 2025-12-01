@@ -1,0 +1,17 @@
+# build.yaml
+targets:
+  $default:
+    builders:
+      # Match builder name to your package
+      gemini_agent_tools|tool_generator:
+        generate_for:
+          - lib/**.dart # Generate for all annotated files
+
+builders:
+  tool_generator:
+    import: "package:gemini_agent_tools/builder.dart"
+    builder_factories: ["toolGenerator"] # Must match function name
+    build_extensions: { ".dart": [".tools.g.dart"] }
+    auto_apply: dependents
+    build_to: source
+    applies_builders: ["source_gen:combining_builder"] # Required for SharedPartBuilder

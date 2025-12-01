@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:gemini_agent_tools/tool_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:analyzer/dart/element/element.dart';
-import 'package:build/src/build_step.dart';
 import 'package:build/build.dart';
 
 Builder toolGenerator(BuilderOptions options) =>

@@ -1,7 +1,7 @@
 name: gemini_agent_tools
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+repository: "https://github.com/konrad1001/gemini_agent_tools"
 
 environment:
   sdk: ^3.9.2
@@ -9,11 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  source_gen: ^4.1.1
+  analyzer: ^9.0.0
+  build: ^4.0.3
 
 dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.10.4
-  source_gen: ^4.1.1
-  analyzer: ^9.0.0
 
 flutter:

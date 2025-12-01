@@ -16,26 +16,10 @@ class ToolGenerator extends GeneratorForAnnotation<Tool> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    print("Tool generator running");
     final classElement = element as ClassElement;
 
     final name = annotation.read('name').stringValue;
     final description = annotation.read('description').stringValue;
-
-    // If overrideParameters exists, use it entirely.
-    // final overrideParams = annotation.peek('overrideParameters')?.mapValue;
-    // if (overrideParams != null) {
-    //   final overrideJson = _dartMapToJson(overrideParams);
-    //   return '''
-    //     {
-    //       "name": "$name",
-    //       "description": ${_escape(description)},
-    //       "parameters": $overrideJson
-    //     }
-    //     ''';
-    // }
-
-    // else generate from class fields
     final fields = classElement.fields.where((f) => !f.isStatic);
 
     final properties = fields
@@ -91,25 +75,4 @@ class ToolGenerator extends GeneratorForAnnotation<Tool> {
     final escaped = text.replaceAll('\n', '\\n').replaceAll('"', '\\"');
     return '"$escaped"';
   }
-
-  // String _dartMapToJson(Map<Object?, Object?> map) {
-  //   final buffer = StringBuffer('{');
-  //   map.forEach((key, value) {
-  //     buffer.write('"$key": ${_jsonValue(value)},');
-  //   });
-  //   if (buffer.length > 1) buffer.length--;
-  //   buffer.write('}');
-  //   return buffer.toString();
-  // }
-
-  // String _jsonValue(Object? value) {
-  //   if (value == null) return 'null';
-  //   if (value is String) return '"$value"';
-  //   if (value is num || value is bool) return '$value';
-  //   if (value is List) {
-  //     return '[${value.map(_jsonValue).join(',')}]';
-  //   }
-  //   if (value is Map) return _dartMapToJson(value);
-  //   return '"$value"';
-  // }
 }

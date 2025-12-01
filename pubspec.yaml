@@ -1,5 +1,6 @@
 name: gemini_agent_tools
-description: "A new Flutter package project."
+description: >
+  Code generation for tools sections of Gemini REST API.
 version: 0.0.1
 repository: "https://github.com/konrad1001/gemini_agent_tools"
 

@@ -1,5 +1,7 @@
 # gemini_agent_tools
 
+Note: This package was developed for use alongside a University final year project, though it was published to make it easier for me to use as well as as an exercies in publishing.
+
 `gemini_agent_tools` is a Dart/Flutter package that enables **automatic code generation** for Gemini-style agent tool declarations to be used in with the [REST api](https://ai.google.dev/api).
 It allows you to define tools as **annotated Dart classes**, and a custom `build_runner` generator produces the correct API-ready JSON schemas automatically.
 
@@ -14,11 +16,13 @@ This eliminates manual boilerplate, keeps tool definitions type-safe, and ensure
 - 📐 Auto-generates:
   - tool names
   - descriptions
-  - JSON schema parameters
+  - JSON schema parameters and their types\*
   - property ordering
   - required fields
 
 - 🐍 Converts camelCase → snake_case automatically
+
+\* Only String, bool and int types currently supported.
 
 ---
 

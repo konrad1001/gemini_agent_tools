@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:analyzer/dart/element/type.dart';
 import 'package:gemini_agent_tools/tool_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:analyzer/dart/element/element.dart';
@@ -23,8 +24,13 @@ class ToolGenerator extends GeneratorForAnnotation<Tool> {
 
     final properties = fields
         .map((f) {
-          final snake = _camelToSnake(f.name ?? "EMPTYNAME");
-          return '"$snake": {"type": "string"}';
+          final fieldName = f.name;
+          if (fieldName == null) {
+            throw Exception("Error: Found a field with a null name");
+          }
+
+          final snake = _camelToSnake(fieldName);
+          return '"$snake": {"type": "${_type(f.type, fieldName)}"}';
         })
         .join(',');
 
@@ -35,7 +41,13 @@ class ToolGenerator extends GeneratorForAnnotation<Tool> {
             .map((v) => '"${v.toStringValue()}"')
             .join(',') ??
         fields
-            .map((f) => '"${_camelToSnake(f.name ?? "EMPTYNAME")}"')
+            .map((f) {
+              final fieldName = f.name;
+              if (fieldName == null) {
+                throw Exception("Error: Found a field with a null name");
+              }
+              return '"${_camelToSnake(fieldName)}"';
+            })
             .join(',');
 
     final requiredFields =
@@ -73,5 +85,19 @@ class ToolGenerator extends GeneratorForAnnotation<Tool> {
   String _escape(String text) {
     final escaped = text.replaceAll('\n', '\\n').replaceAll('"', '\\"');
     return '"$escaped"';
+  }
+
+  String _type(DartType type, String name) {
+    if (type.isDartCoreString) {
+      return "string";
+    } else if (type.isDartCoreInt) {
+      return "integer";
+    } else if (type.isDartCoreBool) {
+      return "boolean";
+    } else {
+      throw Exception(
+        "Invalid type for $name. Expected one of String, int or bool",
+      );
+    }
   }
 }

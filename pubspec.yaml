@@ -1,21 +1,20 @@
 name: gemini_agent_tools
 description: >
   Code generation for tools sections of Gemini REST API.
-version: 0.0.2
+version: 0.0.3
 repository: "https://github.com/konrad1001/gemini_agent_tools"
 
 environment:
-  sdk: ^3.9.2
+  sdk: ">=3.8.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  analyzer: ">=8.0.0 <9.0.0"
-  source_gen: ^4.1.0
-  build: ^4.0.0
+  analyzer: ">=7.5.9 <9.0.0"
+  source_gen: ">=3.0.0 <5.0.0"
+  build: ">=3.0.0 <5.0.0"
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
-  build_runner: ^2.10.4
+  build_runner: ^2.3.3
 
 flutter:
